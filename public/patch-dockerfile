@@ -1,0 +1,10 @@
+FROM registry.paas/cmss/nginx:1.21.4
+ENV NGINX_CONF_DIR /etc/nginx
+ENV NGINX_CONF_FILE_NAME nginx.conf 
+RUN mkdir -p /apps/svr/bcop_static
+RUN mkdir -p /etc/nginx/logs/
+RUN mkdir -p /apps/svr/bcop_static/TOP/
+COPY $NGINX_CONF_FILE_NAME $NGINX_CONF_DIR/ 
+ADD WEB-PROGRAM.tar /apps/svr/bcop_static/TOP/
+RUN chmod a+xr $NGINX_CONF_DIR/$NGINX_CONF_FILE_NAME
+RUN chmod -R 777 /apps/svr/bcop_static
